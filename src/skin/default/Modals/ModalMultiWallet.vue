@@ -1,0 +1,65 @@
+<template>
+  <b-modal id="bv-modal-multi-wallet" hide-footer>
+    <template #modal-title>
+      {{ $t('header.select_wallet') }}
+    </template>
+
+    <b-form >
+      <b-row class="mb-4 d-flex" v-for="(item, i) in wallets" @click="onSelect(item)">
+        <b-col>
+          <b-button squared class="d-block" :style="item.style">
+            <img class="mr-2 text-center" :src="item.img_url" width="30px" style="border-radius: 10px;vertical-align:middle"/>
+            <p class="d-inline-block" style="vertical-align:middle;margin: 0" >{{ item.name }}</p>
+          </b-button>
+        </b-col>
+      </b-row>
+    </b-form>
+  </b-modal>
+</template>
+
+<script>
+import ModalMultiWallet from '@/mixins/Modals/ModalMultiWallet'
+
+export default {
+  name: "ModalMultiWallet",
+  mixins : [
+    ModalMultiWallet
+  ],
+  data(){
+    return {
+      wallets : []
+    }
+
+  },
+  methods : {
+    getWallets(){
+
+      this.wallets.push({
+        img_url : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/512px-MetaMask_Fox.svg.png",
+        symbol : "METAMASK",
+        name : "Metamask",
+        style : "border: 1px solid #f2f2f2;width: 100%;background-color: #f7f7f7!important; min-height:50px; color: #212529;"
+      })
+      this.wallets.push({
+        img_url : "https://dappimg.com/media/image/dapp/f2c37dc5e72747b187d14793d70c1376.blob",
+        symbol : "KAIKAS",
+        name : "Kaikas",
+        style : "border: 1px solid #f2f2f2;width: 100%;background-color: #f7f7f7!important;min-height:50px; color: #212529;"
+      })
+      this.wallets.push({
+        img_url : "https://klayswap.com/img/icon/ic-service-klip-bk.svg",
+        symbol : "KLIP",
+        name : "Kakao Talk Klip",
+        style : "border: 1px solid #f2f2f2;width: 100%;background-color: #f7f7f7!important; min-height:50px; color: #212529;"
+      })
+    }
+  },
+  created() {
+    this.getWallets();
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
